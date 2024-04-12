@@ -1,0 +1,24 @@
+ 
+trigger: none
+ 
+pr: none
+ 
+stages :        
+  - stage: arm_template_deploy
+    jobs:
+      - job: arm_template_deploy
+        steps:
+              - checkout: self
+ 
+              - task: AzureResourceManagerTemplateDeployment@3
+                inputs:
+                  deploymentScope: 'Storage Account'
+                  azureResourceManagerConnection: 'azure-terraform-SC'
+                  subscriptionId: '4cac2e2e-9110-47de-b30d-45a35221a8e3'
+                  action: 'Create Or Update Storage Account'
+                  resourceGroupName: 'tamops-arm-template'
+                  location: 'eastus'
+                  templateLocation: 'Linked artifact'
+                  csmFile: '$(System.DefaultWorkingDirectory)/template.json'
+                  csmParametersFile: '$(System.DefaultWorkingDirectory)/parameters.json'
+                  deploymentMode: 'Incremental'
