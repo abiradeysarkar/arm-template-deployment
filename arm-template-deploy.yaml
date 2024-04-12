@@ -13,7 +13,7 @@ stages :
               - task: AzureResourceManagerTemplateDeployment@3
                 inputs:
                   deploymentScope: 'Storage Account'
-                  azureResourceManagerConnection: 'azure-terraform-SC'
+                  azureResourceManagerConnection: 'arm-template-deploy-SC'
                   subscriptionId: '4cac2e2e-9110-47de-b30d-45a35221a8e3'
                   action: 'Create Or Update Storage Account'
                   resourceGroupName: 'tamops-arm-template'
